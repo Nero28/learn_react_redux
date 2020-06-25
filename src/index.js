@@ -1,17 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { createStore} from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './reducer';
+
+import App from './components/app';
+
+const store = createStore(reducer);
+
+
+// const bindActionCreator = (creator, dispatch) => (...args) => {
+//   dispatch(creator(...args));
+// };
+
+
+// actions={
+//   inc: inc,
+//   dec: dec,
+//   rnd: rnd,
+// }
+
+//const { inc, dec, rnd } = bindActionCreators(actions, dispatch);
+
+
+// const decDispatch = bindActionCreators(dec, dispatch);
+// const rndDispatch = bindActionCreators(rnd, dispatch);
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+  <Provider store={store}>
+    < App />
+  </Provider>
+  , document.getElementById('root'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+
+
+// store.dispatch({ type: 'INC' });
+// store.dispatch({ type: 'INC' });
+// store.dispatch({ type: 'INC' });
+// let state = reducer(undefined, {});
+
+
+// state = reducer(state, { type: 'INC' });
+// console.log(state);
+// state = reducer(state, { type: 'INC' });
+// console.log(state);
